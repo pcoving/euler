@@ -1,10 +1,6 @@
 import sys
 from itertools import chain, combinations
 
-def powerset(iterable):
-    s = list(iterable)
-    return chain.from_iterable(combinations(s, r) for r in range(len(s)+1))
-
 def make_primes(n):
     primes = set(range(2,n))
     for i in range(2,n):
@@ -18,7 +14,7 @@ def make_primes(n):
 def find_factors(n, primes):
     factors = []
     for p in primes:
-        if p > n:
+        if p >= n:
             break
         m = int(float(n)/p)
         if m == float(n)/p:
@@ -31,5 +27,5 @@ if __name__ == "__main__":
         ndivisors = len(set(find_factors(m*(m+1)/2, primes))) + 2
         print m*(m+1)/2, ndivisors
         if ndivisors > 500:
-            sys.stdin.read(1)
+            break;
     
